@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<section class="container">
+
+    <h2>Ülesanne. 2</h2>
+
+    <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+
+    <table class="order-table table">
+        <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Perekonnanimi</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Vanus</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Joonas</td>
+            <td>Must</td>
+            <td>joonas@gmail.com</td>
+            <td>59599595</td>
+            <td>99</td>
+        </tr>
+        <tr>
+            <td>Peeter</td>
+            <td>Võsa</td>
+            <td>pets@peetrikodu.ee</td>
+            <td>98765432</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Mart</td>
+            <td>Meri</td>
+            <td>mart@mart.ee</td>
+            <td>56935355</td>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>Mari</td>
+            <td>Mesi</td>
+            <td>mesimumm@mumm.ee</td>
+            <td>51235123</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>Veebel</td>
+            <td>Klaabu</td>
+            <td>Klaabu@gmail.com</td>
+            <td>56921233</td>
+            <td>27</td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+<script>
+    (function(document) {
+    'use strict';
+
+    var LightTableFilter = (function(Arr) {
+
+        var _input;
+
+        function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+            Arr.forEach.call(tables, function(table) {
+                Arr.forEach.call(table.tBodies, function(tbody) {
+                    Arr.forEach.call(tbody.rows, _filter);
+                });
+            });
+        }
+
+        function _filter(row) {
+            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+
+        return {
+            init: function() {
+                var inputs = document.getElementsByClassName('light-table-filter');
+                Arr.forEach.call(inputs, function(input) {
+                    input.oninput = _onInputEvent;
+                });
+            }
+        };
+    })(Array.prototype);
+
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+            LightTableFilter.init();
+        }
+    });
+
+})(document);</script>
+
+</body>
+</html>
