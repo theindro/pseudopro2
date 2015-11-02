@@ -4,5 +4,5 @@ if (!empty($_POST['aadress'])) {
     fwrite($file, $_POST['aadress'] . "\n");
 }
 
-header('Location: yl_4.html');
+header('Location: yl4.html');
 ?>
